@@ -1,0 +1,5 @@
+grammar/output/**
+grammar/test_files/**
+bin/**
+obj/**
+.vs/**
