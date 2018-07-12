@@ -1,8 +1,5 @@
 parser grammar whkdParser;
 options {tokenVocab=whkdLexer;}
-@lexer::namespace {
-    WHKD.Parser
-}
 
 profile
     : binding+

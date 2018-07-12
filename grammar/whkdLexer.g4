@@ -1,8 +1,4 @@
 lexer grammar whkdLexer;
-@lexer::namespace 
-{
-    Whkd.Parser
-}
 
 KeyChoiceName
     : AlphaNumChar+ ':'
