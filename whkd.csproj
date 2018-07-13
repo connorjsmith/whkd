@@ -1,8 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Antlr4UseCSharpGenerator>True</Antlr4UseCSharpGenerator>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Antlr4" Version="4.6.5-rc002" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Antlr4 Include="whkdLexer.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>Whkd</CustomToolNamespace>
+    </Antlr4>
+    <Antlr4 Include="whkdParser.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>Whkd</CustomToolNamespace>
+      <Listener>True</Listener>
+      <Visitor>True</Visitor>
+    </Antlr4>
+  </ItemGroup>
 </Project>
