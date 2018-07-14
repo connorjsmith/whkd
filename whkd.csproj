@@ -7,17 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="whkd.Tests\**" />
+    <EmbeddedResource Remove="whkd.Tests\**" />
+    <None Remove="whkd.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Antlr4" Version="4.6.5-rc002" />
   </ItemGroup>
 
   <ItemGroup>
     <Antlr4 Include="whkdLexer.g4">
       <Generator>MSBuild:Compile</Generator>
-      <CustomToolNamespace>Whkd</CustomToolNamespace>
+      <CustomToolNamespace>whkd.Grammar</CustomToolNamespace>
     </Antlr4>
     <Antlr4 Include="whkdParser.g4">
       <Generator>MSBuild:Compile</Generator>
-      <CustomToolNamespace>Whkd</CustomToolNamespace>
+      <CustomToolNamespace>whkd.Grammar</CustomToolNamespace>
       <Listener>True</Listener>
       <Visitor>True</Visitor>
     </Antlr4>
