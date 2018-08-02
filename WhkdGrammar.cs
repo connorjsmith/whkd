@@ -43,6 +43,16 @@ namespace whkd
         public override List<KeyChord> VisitBinding([NotNull] BindingContext context)
         {
             var result = new List<KeyChord>();
+            // TODO: call VisitChord on each chord of this binding, combining them and ensuring each chord has a terminal key below
+            /*
+            foreach (KeyChord chord in chords)
+            {
+                if (!chord.terminalKeyCode.HasValue)
+                {
+                    throw new MissingTerminalKeyException("Every chord must have a terminal key");
+                }
+            }
+            */
             return result;
         }
 
@@ -74,9 +84,9 @@ namespace whkd
             {
                 var swapChords = new List<KeyChord>();
                 List<KeyChord> choiceChords = VisitChoiceKeyList(choiceKeyList);
-                foreach (KeyChord newChord in choiceChords)
+                foreach (KeyChord existingChord in chords)
                 {
-                    foreach (KeyChord existingChord in chords)
+                    foreach (KeyChord newChord in choiceChords)
                     {
                         if (existingChord.terminalKeyCode.HasValue && newChord.terminalKeyCode.HasValue)
                         {
@@ -91,13 +101,6 @@ namespace whkd
                 chords = swapChords;
             }
 
-            foreach (KeyChord chord in chords)
-            {
-                if (!chord.terminalKeyCode.HasValue)
-                {
-                    throw new MissingTerminalKeyException("Every chord must have a terminal key");
-                }
-            }
             return chords;
         }
 
@@ -106,7 +109,7 @@ namespace whkd
             var result = new List<KeyChord>();
             foreach (ChordContext child in context.chord())
             {
-                if (child.choiceKeyList() != null)
+                if (child.choiceKeyList().Length > 0)
                 {
                     throw new NestedChoiceChordsException("Cannot nest choice lists");
                 }
