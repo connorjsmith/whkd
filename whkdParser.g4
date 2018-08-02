@@ -6,26 +6,20 @@ profile
     ;
 
 binding
-    : chords commandPiece+
+    : (chord ChordSeperator)* chord commandPiece+
     ;
-chords
-    : (chord ChordSeperator)* chord 
-    ;
+
 chord
-    : ((key | choiceKey) ModifierSeperator)* (key | choiceKey)
+    : ((key | choiceKeyList) ChordElementSeperator)* (key | choiceKeyList)
     ;
 
 key
     : Modifier
     | TerminalKey
     ;
-// Matches {NonChoicechord1, NonChoicechord2, NonChoicechord3}
-// Which means you cannot have a choice inside a choice ie. {a,b,{d,e,f}}
+// Matches {Chord1, Chord2, Chord3}
 choiceKeyList
-    : ChordListOpen ((Modifier ModifierSeperator)* TerminalKey ChordListSeperator)* (Modifier ModifierSeperator)* TerminalKey ChordListClose
-    ;
-choiceKey
-    : (KeyChoiceName? choiceKeyList)
+    : ChordListOpen (chord ChordListSeperator)* chord ChordListClose
     ;
 
 commandPiece

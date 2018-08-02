@@ -51,7 +51,7 @@ namespace whkd.Tests
             string parsedCommand = bindingCxt.commandPiece()[0].GetText();
             Assert.AreEqual(command, parsedCommand);
 
-            whkdParser.KeyContext[] keys = bindingCxt.chords().chord()[0].key();
+            whkdParser.KeyContext[] keys = bindingCxt.chord()[0].key();
             var modifiers = keys.Select(k => k.Modifier()).Where(m => m != null).ToList();
             var terminalKeys = keys.Select(k => k.TerminalKey()).Where(t => t != null).ToList();
             Assert.AreEqual(1, modifiers.Count());
@@ -63,7 +63,7 @@ namespace whkd.Tests
         #region Helper Functions
         private static string[] ExtractParsedChords(whkdParser.BindingContext bindingCxt)
         {
-            return bindingCxt.chords().chord().Select(c => c.GetText()).ToArray();
+            return bindingCxt.chord().Select(c => c.GetText()).ToArray();
         }
         #endregion Helper Functions
     }

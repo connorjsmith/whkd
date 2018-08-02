@@ -25,7 +25,7 @@ ChordSeperator
     : ';'
     ;
 
-ModifierSeperator
+ChordElementSeperator
     : '+'
     ;
 
